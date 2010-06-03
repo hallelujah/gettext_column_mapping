@@ -1,0 +1,8 @@
+#ciblage_attribut:
+#  parent:
+#    klass: ciblage_famille
+#    key:  label
+#  columns:
+#    label
+#  conditions: "(ciblage_familles.variable NOT LIKE 'REGION_%' AND ciblage_familles.variable NOT LIKE '%_CLUSTER%' AND ciblage_familles.variable NOT LIKE 'CITY_%' AND ciblage_familles.variable not like '%PROVIDER' AND ciblage_familles.variable NOT LIKE '%_DEPARTEMENT%')"
+#

@@ -1,0 +1,9 @@
+# Columns and table mapping 
+# It is only used with gettext and gettext_activerecord.
+# It only maps the human_attribute_name, class_name of your ActiveRecord::Base classes.
+#
+#Example
+#client:
+#  class_name: customer
+#  column_names:
+#    code_client: customer_code

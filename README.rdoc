@@ -1,0 +1,24 @@
+= gettext_column_mapping
+
+Version: 0.0.1
+
+If you use mutoh/gettext or grosser/fast_gettext to localize your active_record models, this library is for you.
+
+== Requirements
+* mutoh/gettext_activerecord >= 2.1.0 or grosser/fast_gettext 
+* rails >= 2.2
+
+== Features/Problems
+This library is extracted from another application with its requirements.  So it may not fit your project
+It must be refactored and improved.
+
+* Must be Rails independent
+* Must have a better API methods naming
+* Must write a documentation.
+* Must write tests.
+
+== Maintainer
+Ramihajamalala Hery <hery at rails-royce.org>
+
+
+

@@ -1,6 +1,7 @@
 module GettextColumnMapping
-  class Mapper
 
+  attr_accessor :mappings
+  class Mapper
   end
 
 end

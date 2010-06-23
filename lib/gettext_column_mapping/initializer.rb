@@ -8,37 +8,47 @@ module GettextColumnMapping
 
     cattr_accessor :config
 
-    def self.run(config = nil)
+    def self.run(config = nil,&block)
       self.config = config || GettextColumnMapping.config
+      yield(self.config) if block_given?
+      Parser.init(config) 
       load_config_file
-      load_extract_file
+      require_backend_base
       require_backend
-      require_base
+      extend_active_record
     end
 
     private
 
     class << self
 
-      def require_backend
-        case config.backend
-        when Symbol
-          require "gettext_column_mapping/backends/#{config.backend}"
-        when String
-          require config.backend
-        else
-          raise BackendNotLoadedError, "You must supply a valid backend :fast_gettext | gettext_rails | 'my_librairie/my_backend', please refer to documentation."
-        end
+      def require_backend_base
+        require 'gettext_column_mapping/backends/base'
       end
 
-      def require_base
-        require 'gettext_column_mapping/base'
+      def require_backend
+
+        case config.backend
+        when Symbol
+          require(lib = "gettext_column_mapping/backends/#{config.backend}")
+          config.backend_class = lib.classify
+        when String
+          require config.backend
+          # config.backend_ext must be set !!
+          raise  BackendNotLoadedError, "GettextColumnmapping.config.backend_class must be set if you use your own backend" unless config.bakend_class
+        else
+          raise BackendNotLoadedError, "You must supply a valid backend :fast_gettext | :gettext | 'my_librairie/my_backend', please refer to documentation."
+        end
+
+      end
+
+      def extend_active_record
+        ActiveRecord::Base.send(:include,GettextColumn::Backends::Base)
+        ActiveRecord::Base.send(:include, config.backend_ext.constantize)
       end
 
       def load_config_file
-        GettextColumnMapping.mapper.mappings = Parser::Mapping.parse(file,config)
-        #file = config.mapping_file
-        #raise ConfigFileUnFoundError, "You must supply a valid path" unless File.exist?(file)
+        GettextColumnMapping.mapper.mappings = Parser.parse(file,config)
       end
 
     end

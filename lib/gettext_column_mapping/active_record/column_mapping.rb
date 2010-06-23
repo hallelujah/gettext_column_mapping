@@ -32,7 +32,7 @@ module ActiveRecord
               def human_attribute_name_without_translation(attr)
                 human_attribute_name(attr)
               end
-              
+
               def human_attribute_name_without_gettext_activerecord(attr)
                 human_attribute_name_without_translation(attr)
               end
@@ -173,7 +173,7 @@ module ActiveRecord
 
                     # It is a bug : we need to load this after rails is loaded !!!
                    # alias_method_chain :#{method_sym}, :column_translation
-                      STR
+                    STR
                 end
               end
             end

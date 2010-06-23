@@ -7,5 +7,4 @@ module GettextColumnMapping
 
   self.config = ActiveSupport::OrderedOptions.new
   @@mapper = GettextColumnMapping::Mapper.new
-
 end

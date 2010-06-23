@@ -17,9 +17,6 @@ require_gettext = Proc.new do
     end
   end
   require 'gettext_column_mapping'
-  if Object.const_defined?(:FastGettext)
-    require 'gettext_column_mapping/fast_gettext'
-  end
 end
 
 if Rails::VERSION::MAJOR > 2

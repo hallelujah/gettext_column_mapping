@@ -7,12 +7,12 @@ module GettextColumnMapping
       f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
       ModelAttributesFinder.new.find(options).each do |model,column_names|
         
-        f.puts("_('#{model.to_s_with_gettext}')") #!Keep in sync with ActiveRecord::Base.human_name
+        f.puts("s_('#{model.to_s_with_gettext}')") #!Keep in sync with ActiveRecord::Base.human_name
 
         #all columns namespaced under the model
         column_names.each do |attribute|
           translation = model.gettext_translation_for_attribute_name(attribute)
-          f.puts("_('#{translation}')")
+          f.puts("s_('#{translation}')")
         end
       end
       f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"

@@ -10,6 +10,7 @@ require 'rubygems'
 require 'gettext_column_mapping'
 require 'gettext_column_mapping/initializer'
 require 'test/unit'
+require 'fileuitls'
 configuration = {
   'database' => 'gettext_column_mapping',
   'adapter' => 'mysql',

@@ -1,3 +1,4 @@
+require 'gettext_i18n_rails'
 require 'gettext_column_mapping/helpers/fast_gettext'
 module GettextColumnMapping
   module Backends

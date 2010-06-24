@@ -1,3 +1,4 @@
+require 'gettext_rails'
 module GettextColumnMapping
   module Backends
     module Gettext

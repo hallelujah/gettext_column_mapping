@@ -1,7 +1,7 @@
-require 'gettext_rails'
+require 'gettext_activerecord'
 module GettextColumnMapping
   module Backends
-    module Gettext
+    module GettextActiverecord
 
       def self.included(base)
         base.class_eval do

@@ -14,6 +14,6 @@ module GettextColumnMapping
   self.config = ActiveSupport::OrderedOptions.new
   self.config.config_file = defined?(Rails) ? File.join(Rails.root,'config','column_mapping.yml') : nil
   self.config.config_parser = :yaml
-  self.config.backend = :fast_gettext
+  self.config.backend = :gettext_i18n_rails
   @@mapper = GettextColumnMapping::Mapper.new
 end

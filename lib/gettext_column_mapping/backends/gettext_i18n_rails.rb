@@ -1,8 +1,11 @@
+# Weird Hack on ActionController constant error
+module ActionController
+end
 require 'gettext_i18n_rails'
 require 'gettext_column_mapping/helpers/fast_gettext'
 module GettextColumnMapping
   module Backends
-    module FastGettext
+    module GettextI18nRails
 
       def self.included(base)
         base.class_eval do 

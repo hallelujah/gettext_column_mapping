@@ -13,8 +13,9 @@ module GettextColumnMapping
         results = {}
         h = @parser.parse(file)
         h.each do |k,v|
-          results[k.to_s] = HashWithIndifferentAccess.new(v) 
+          results[k.to_s] = HashWithIndifferentAccess.new(v)
         end if h
+        results
       end
 
       def locate_parser(mod)

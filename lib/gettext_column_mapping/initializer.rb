@@ -32,7 +32,7 @@ module GettextColumnMapping
         case config.backend
         when Symbol
           require(lib = "gettext_column_mapping/backends/#{config.backend}")
-          config.backend_class = lib.classify
+          config.backend_class = lib.camelize
         when String
           require config.backend
           # config.backend_ext must be set !!

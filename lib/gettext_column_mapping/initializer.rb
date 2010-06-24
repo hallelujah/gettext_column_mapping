@@ -14,8 +14,8 @@ module GettextColumnMapping
       yield(self.config) if block_given?
       Parser.init(self.config) 
       load_config_file
-      require_backend_base
       require_backend
+      require_backend_base
       extend_active_record
     end
 
@@ -38,7 +38,7 @@ module GettextColumnMapping
           # config.backend_ext must be set !!
           raise  BackendNotLoadedError, "GettextColumnmapping.config.backend_class must be set if you use your own backend" unless config.bakend_class
         else
-          raise BackendNotLoadedError, "You must supply a valid backend :fast_gettext | :gettext | 'my_librairie/my_backend', please refer to documentation."
+          raise BackendNotLoadedError, "You must supply a valid backend :gettext_i18n_rails | :gettext_active_record | 'my_librairie/my_backend', please refer to documentation."
         end
 
       end

@@ -5,13 +5,14 @@ module GettextColumnMapping
   class Initializer
 
     class BackendNotLoadedError < LoadError; end
+    class ConfigFileNotFoundError < Errno::ENOENT; end
 
     cattr_accessor :config
 
     def self.run(config = nil,&block)
-      self.config = config || GettextColumnMapping.config
+      self.config = (config || GettextColumnMapping.config)
       yield(self.config) if block_given?
-      Parser.init(config) 
+      Parser.init(self.config) 
       load_config_file
       require_backend_base
       require_backend
@@ -43,12 +44,13 @@ module GettextColumnMapping
       end
 
       def extend_active_record
-        ActiveRecord::Base.send(:include,GettextColumn::Backends::Base)
-        ActiveRecord::Base.send(:include, config.backend_ext.constantize)
+        ActiveRecord::Base.send(:include,GettextColumnMapping::Backends::Base)
+        ActiveRecord::Base.send(:include, config.backend_class.constantize)
       end
 
       def load_config_file
-        GettextColumnMapping.mapper.mappings = Parser.parse(file,config)
+        raise ConfigFileNotFoundError, "#{config.config_file.inspect}. Please set up config.config_file" unless config.config_file && File.exist?(config.config_file)
+        GettextColumnMapping.mapper.mappings = Parser.parse(config.config_file)
       end
 
     end

@@ -14,7 +14,7 @@ module GettextColumnMapping
         h = @parser.parse(file)
         h.each do |k,v|
           results[k.to_s] = HashWithIndifferentAccess.new(v) 
-        end
+        end if h
       end
 
       def locate_parser(mod)
@@ -23,10 +23,10 @@ module GettextColumnMapping
           mod
         when Symbol
           require "gettext_column_mapping/parser/#{mod.to_s}"
-          Gettext::ColumnMapping::Parser.const_get(mod.to_s.classify)
+          GettextColumnMapping::Parser.const_get(mod.to_s.classify)
         else
           require "gettext_column_mapping/parser/yaml"
-          Gettext::ColumnMapping::Parser::Yaml
+          GettextColumnMapping::Parser::Yaml
         end
       end
 

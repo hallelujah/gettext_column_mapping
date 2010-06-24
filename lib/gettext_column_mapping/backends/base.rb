@@ -39,7 +39,7 @@ module GettextColumnMapping
             end
 
             def to_s_with_gettext_with_translation
-              "Model|" +
+              "#{GettextColumnMapping.config.model_prefix}|" +
                 if  has_translation_class_name?
                   GettextColumnMapping.mapper.mappings[self.name.underscore][:class_name].to_s.split('|').collect(&:humanize).collect{|s| s.split(/\s+/).collect(&:humanize).join(' ')}.join('|')
                 else

@@ -15,5 +15,7 @@ module GettextColumnMapping
   self.config.config_file = defined?(Rails) ? File.join(Rails.root,'config','column_mapping.yml') : nil
   self.config.config_parser = :yaml
   self.config.backend = :gettext_i18n_rails
+  self.config.model_prefix = "Model"
+  self.config.data_prefix = "Data"
   @@mapper = GettextColumnMapping::Mapper.new
 end

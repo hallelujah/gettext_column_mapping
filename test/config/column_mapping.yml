@@ -1,3 +1,4 @@
 utilisateur:
+  class_name: User
   column_names:
     sexe: Gender

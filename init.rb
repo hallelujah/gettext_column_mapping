@@ -7,4 +7,3 @@ rescue LoadError
   # store is not configured, this fixes it somewhat...
 end
 require 'gettext_column_mapping'
-require 'gettext_column_mapping/initializer'

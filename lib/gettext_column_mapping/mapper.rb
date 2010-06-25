@@ -12,7 +12,7 @@ module GettextColumnMapping
       self[obj.name.underscore][:column_names][key]
     end
 
-    def has_translation_key?(obj,key)
+    def translate_key?(obj,key)
       begin
         self.has_key?(obj.name.underscore) && ! self[obj.name.underscore][:column_names][key].blank?
       rescue
@@ -26,7 +26,16 @@ module GettextColumnMapping
       else
         "#{obj.to_s_with_gettext}|#{key.to_s.gsub('_',' ').capitalize}"
       end
+    end
 
+    def to_s_with_gettext(obj)
+      array = [GettextColumnMapping.config.model_prefix]
+      if  translate_class_name?(obj)
+        array += self[obj.name.underscore][:class_name].to_s.split('|').collect(&:humanize).collect{|s| s.split(/\s+/).collect(&:humanize).join(' ')}
+      else
+        array += [obj.to_s_with_gettext_without_translation]
+      end
+      array.join('|')
     end
 
   end

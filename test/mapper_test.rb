@@ -5,10 +5,10 @@ class UtilisateurTest < Test::Unit::TestCase
     assert_equal 'Model|User', Utilisateur.to_s_with_gettext
   end
 
-  def test_has_translation_key
-    assert GettextColumnMapping.mapper.has_translation_key?(Utilisateur,'sexe')
-    assert GettextColumnMapping.mapper.has_translation_key?(Utilisateur,'nom')
-    assert GettextColumnMapping.mapper.has_translation_key?(Utilisateur,'prenom')
+  def test_translate_key
+    assert GettextColumnMapping.mapper.translate_key?(Utilisateur,'sexe')
+    assert GettextColumnMapping.mapper.translate_key?(Utilisateur,'nom')
+    assert GettextColumnMapping.mapper.translate_key?(Utilisateur,'prenom')
   end
 
   def column_translation_for_attribute

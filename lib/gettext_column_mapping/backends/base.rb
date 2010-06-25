@@ -11,7 +11,7 @@ module GettextColumnMapping
             end
 
             def has_translation_key?(attr_name)
-              GettextColumnMapping.mapper.has_translation_key?(self,attr_name)
+              GettextColumnMapping.mapper.translate_key?(self,attr_name)
             end
 
             def has_translation_class_name?
@@ -30,12 +30,7 @@ module GettextColumnMapping
             end
 
             def to_s_with_gettext_with_translation
-              "#{GettextColumnMapping.config.model_prefix}|" +
-                if  has_translation_class_name?
-                  GettextColumnMapping.mapper[self.name.underscore][:class_name].to_s.split('|').collect(&:humanize).collect{|s| s.split(/\s+/).collect(&:humanize).join(' ')}.join('|')
-                else
-                  to_s_with_gettext_without_translation
-                end
+              GettextColumnMapping.mapper.to_s_with_gettext(self)
             end
             alias_method_chain :to_s_with_gettext, :translation
 

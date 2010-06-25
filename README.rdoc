@@ -1,7 +1,5 @@
 = gettext_column_mapping
 
-Version: 0.0.1
-
 If you use mutoh/gettext or grosser/fast_gettext to localize your active_record models, this library is for you.
 
 

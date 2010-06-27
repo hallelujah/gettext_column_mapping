@@ -5,9 +5,9 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "gettext_column_mapping"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "hery@rails-royce.Org"
+    gem.summary = %Q{Translate your database columns with gettext}
+    gem.description = %Q{Translate your database columns with gettext}
+    gem.email = "hery@rails-royce.org"
     gem.homepage = "http://github.com/hallelujah/gettext_column_mapping"
     gem.authors = ["hallelujah"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings

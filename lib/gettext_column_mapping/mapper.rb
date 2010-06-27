@@ -24,7 +24,7 @@ module GettextColumnMapping
       if has_translation_key?(obj,key)
         "#{obj.to_s_with_gettext}|#{map_attribute(obj,key)}"
       else
-        "#{obj.to_s_with_gettext}|#{key.to_s.gsub('_',' ').capitalize}"
+        "#{obj.to_s_with_gettext}|#{key.to_s.humanize}"
       end
     end
 

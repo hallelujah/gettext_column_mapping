@@ -23,6 +23,10 @@ class UtilisateurTest < Test::Unit::TestCase
     assert_equal 'User', Utilisateur.human_name
     assert_equal 'Apples', ns_("Toto|Apple","Toto|Apples",5)
     assert_equal 'Apple', ns_("Toto|Apple","Toto|Apples",1)
+    FastGettext.locale = 'fr'
+    assert_equal 'Utilisateur', Utilisateur.human_name
+    assert_equal 'Pommes', ns_("Toto|Apple","Toto|Apples",5)
+    assert_equal 'Pomme', ns_("Toto|Apple","Toto|Apples",1)
   end
 
 end

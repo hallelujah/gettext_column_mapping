@@ -1,0 +1,7 @@
+test:
+  database: gettext_column_mapping
+  adapter: mysql
+  host: localhost
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock

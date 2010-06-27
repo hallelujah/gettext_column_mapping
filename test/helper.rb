@@ -19,7 +19,7 @@ configuration = {
   'password' => ''
 }.with_indifferent_access
 require 'gettext_column_mapping'
-ActiveRecord::Base.configurations['test'] = configuration
+ActiveRecord::Base.configurations = YAML.load_file(File.expand_path('../config/database.yml',__FILE__))
 ActiveRecord::Base.establish_connection(:test)
 logfile = File.open(File.expand_path('../log/database.log',__FILE__), 'a')    
 logfile.sync = true

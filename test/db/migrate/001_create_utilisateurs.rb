@@ -1,3 +1,4 @@
+# coding: utf-8
 class CreateUtilisateurs < ActiveRecord::Migration
   def self.up
     create_table :utilisateurs do |t|

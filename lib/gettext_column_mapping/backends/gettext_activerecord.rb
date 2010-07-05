@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'gettext_activerecord'
 module GettextColumnMapping
   module Backends

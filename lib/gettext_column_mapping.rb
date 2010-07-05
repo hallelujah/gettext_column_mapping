@@ -1,3 +1,4 @@
+# coding: utf-8
 
 # Check the version of active_support to requiring all libs
 require 'active_support/version'

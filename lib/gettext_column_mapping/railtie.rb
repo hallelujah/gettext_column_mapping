@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'rails'
 require 'gettext_column_mapping'
 require 'gettext_column_mapping/initializer'

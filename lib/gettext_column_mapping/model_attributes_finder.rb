@@ -1,3 +1,4 @@
+# coding: utf-8
 
 module GettextColumnMapping
   #write all found models/columns to a file where GetTexts ruby parser can find them

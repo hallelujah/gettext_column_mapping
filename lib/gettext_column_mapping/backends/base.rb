@@ -1,3 +1,4 @@
+# coding: utf-8
 module GettextColumnMapping
 
   mattr_accessor :activerecord_subclasses

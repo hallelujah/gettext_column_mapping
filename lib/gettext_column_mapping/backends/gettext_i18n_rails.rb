@@ -1,3 +1,4 @@
+# coding: utf-8
 # Weird Hack on ActionController constant error
 module ActionController
 end

@@ -1,3 +1,4 @@
+# coding: utf-8
 # Install hook code here
 %{column_mapping.yml gettext_db_extract.yml}.each do |file|
   unless File.exist?(File.join(RAILS_ROOT,'examples/config',file))

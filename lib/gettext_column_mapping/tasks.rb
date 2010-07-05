@@ -1,3 +1,4 @@
+# coding: utf-8
 namespace :test_lib do
 
   def load_gettext

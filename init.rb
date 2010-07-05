@@ -1,3 +1,4 @@
+# coding: utf-8
 # Include hook code here
 # HOOK inspired by gettext_i18n_rails
 begin

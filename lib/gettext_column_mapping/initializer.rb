@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'yaml'
 require 'gettext_column_mapping/parser'
 module GettextColumnMapping

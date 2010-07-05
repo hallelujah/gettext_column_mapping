@@ -1,3 +1,4 @@
+# coding: utf-8
 # TODO: Better API naming
 
 module ActiveRecord

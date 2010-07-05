@@ -54,3 +54,14 @@ end
 # Load my tasks
 $:.unshift(File.expand_path('../lib',__FILE__))
 require 'gettext_column_mapping/tasks.rb'
+GettextColumnMapping::Tasks.new("version 0.0.1") do |t|
+  test_root = File.expand_path('../test',__FILE__)
+  t.test_paths <<  test_root
+  t.require_test_libs = ['helper','gettext_column_mapping/model_attributes_finder']
+  t.require_files = Dir["#{test_root}/models/**/*.rb"].map{|filename| 'models/' + File.basename(filename,'.rb')}
+  t.options_store = { :po_root => "#{test_root}/po" , :msgmerge=>['--sort-output'] }
+  t.options_finder = {:to => File.join(test_root,'static','data.rb')}
+  t.po_pattern = "#{test_root}/{models,static}/**/*.{rb,erb,rjs,rxml}"
+  t.locale_path = "#{test_root}/locale"
+  t.mo_args = [true,"#{test_root}/po","#{test_root}/locale"]
+end

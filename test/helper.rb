@@ -22,12 +22,4 @@ ActiveRecord::Migrator.migrate('db/migrate',0)
 # Migrate up
 ActiveRecord::Migrator.migrate('db/migrate',nil)
 $gettext_column_mapping_root = File.dirname(__FILE__)
-
-
-GettextColumnMapping::Initializer.run do |config|
-  config.config_file = File.expand_path("../config/column_mapping.yml", __FILE__)
-end
 FileUtils.mkdir_p(File.join($gettext_column_mapping_root,'locale'))
-FastGettext.add_text_domain 'gettext_column_mapping', :path => File.join($gettext_column_mapping_root,'locale')
-FastGettext.default_available_locales = ['en','fr','es'] #all you want to allow
-FastGettext.default_text_domain =  'gettext_column_mapping'

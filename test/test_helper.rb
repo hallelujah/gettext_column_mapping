@@ -1,3 +1,9 @@
 # coding: utf-8
-require 'helper'
+if ENV['GETTEXT']
+  require 'gettext_helper'
+else
+  require 'fast_gettext_helper'
+end
 require 'test/unit'
+
+

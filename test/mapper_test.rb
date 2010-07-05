@@ -20,11 +20,11 @@ class UtilisateurTest < Test::Unit::TestCase
   end
 
   def test_translation
-    FastGettext.locale = 'en'
+    GettextColumnMapping.locale = 'en'
     assert_equal 'User', Utilisateur.human_name
     assert_equal 'Apples', ns_("Toto|Apple","Toto|Apples",5)
     assert_equal 'Apple', ns_("Toto|Apple","Toto|Apples",1)
-    FastGettext.locale = 'fr'
+    GettextColumnMapping.locale = 'fr'
     assert_equal 'Utilisateur', Utilisateur.human_name
     assert_equal 'Pommes', ns_("Fruits|Apple","Fruits|Apples",5)
     assert_equal 'Pomme', ns_("Fruits|Apple","Fruits|Apples",1)

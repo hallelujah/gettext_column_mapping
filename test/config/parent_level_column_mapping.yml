@@ -1,0 +1,6 @@
+categorie:
+  parent:
+    klass: rubrique
+    key:  libelle
+  columns:
+    libelle

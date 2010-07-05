@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2010-07-05 16:53+0200\n"
+"POT-Creation-Date: 2010-07-05 19:37+0200\n"
 "PO-Revision-Date: 2010-07-05 11:51+0200\n"
 "Last-Translator:  <hery@rails-royce.org>\n"
 "Language-Team: French\n"
@@ -22,17 +22,33 @@ msgstr[0] "Pomme"
 msgstr[1] "Pommes"
 
 #: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:3
+msgid "Model|Category"
+msgstr "Catégorie"
+
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:4
+msgid "Model|Category|Label"
+msgstr "Libellé"
+
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:5
+msgid "Model|Division"
+msgstr "Rubrique"
+
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:6
+msgid "Model|Division|Label"
+msgstr "Libellé"
+
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:7
 msgid "Model|User"
 msgstr "Utilisateur"
 
-#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:4
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:8
 msgid "Model|User|First name"
 msgstr "Prénom"
 
-#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:6
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:10
 msgid "Model|User|Gender"
 msgstr "Sexe"
 
-#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:5
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:9
 msgid "Model|User|Last name"
 msgstr "Nom"

@@ -2,6 +2,8 @@ require 'helper'
 
 GettextColumnMapping::Initializer.run do |config|
   config.config_file = File.expand_path("../config/column_mapping.yml", __FILE__)
+  config.use_parent_level = true
+  config.parent_level_file = File.expand_path("../config/parent_level_column_mapping.yml", __FILE__)
 end
 
 

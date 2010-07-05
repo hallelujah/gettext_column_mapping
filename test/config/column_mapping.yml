@@ -4,3 +4,13 @@ utilisateur:
     sexe: Gender
     nom: Last name
     prenom: First name
+
+rubrique:
+  class_name: Division
+  column_names:
+    libelle: Label
+
+categorie:
+  class_name: Category
+  column_names:
+    libelle: Label

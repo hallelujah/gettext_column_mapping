@@ -4,13 +4,14 @@ module GettextColumnMapping
 
     attr_accessor  :text_domain, :lib_paths, :test_paths, :require_test_libs, :require_libs, :require_files, :options_store, :po_pattern, :mo_args, :locale_path, :options_finder
     attr_reader :version
-    def initialize(version,paths = [], &block)
+    def initialize(version, &block)
       @test_paths = []
       @require_libs = []
       @require_test_libs = []
       @require_files = []
       @options_store = {}
       @po_pattern = ''
+      @locale_path = 'locale'
       @version = version
       yield self
       define
@@ -28,6 +29,9 @@ module GettextColumnMapping
     private
 
     def define
+      require_libs.each do |lib|
+        require lib
+      end
 
       namespace :gettext_column_mapping do
         desc "Redo gettext"

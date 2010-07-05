@@ -1,4 +1,4 @@
 *.swp
 *~
-test/locale/**/LC_MESSAGES
+test/locale/
 coverage

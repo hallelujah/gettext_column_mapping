@@ -26,6 +26,10 @@ module GettextColumnMapping
       require 'gettext/utils'
     end
 
+    def po_root
+      options_store[:po_root] || locale_path
+    end
+
     private
 
     def define
@@ -107,19 +111,19 @@ module GettextColumnMapping
             puts "You need to specify the language to add. Either 'LANGUAGE=eo rake test_lib:gettext:add_languange' or 'rake test_lib:gettext:add_languange[eo]'"
             next
           end
-          pot = File.join(locale_path, "#{text_domain}.pot")
+          pot = File.join(po_root, "#{text_domain}.pot")
           if !File.exists?(pot)
             puts "You don't have a pot file yet, you probably should run 'rake gettext:find' at least once. Tried '#{pot}'."
             next
           end
 
           # Create the directory for the new language.
-          dir = File.join(locale_path, language)
+          dir = File.join(po_root, language)
           puts "Creating directory #{dir}"
           FileUtils.mkdir_p(dir)
 
           # Create the po file for the new language.
-          new_po = File.join(locale_path, language, "#{text_domain}.po")
+          new_po = File.join(po_root, language, "#{text_domain}.po")
           puts "Initializing #{new_po} from #{pot}."
           system "msginit --locale=#{language} --input=#{pot} --output=#{new_po}"
 

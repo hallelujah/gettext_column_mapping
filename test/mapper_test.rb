@@ -22,12 +22,12 @@ class UtilisateurTest < Test::Unit::TestCase
   def test_translation
     GettextColumnMapping.locale = 'en'
     assert_equal 'User', Utilisateur.human_name
-    assert_equal 'Apples', ns_("Toto|Apple","Toto|Apples",5)
-    assert_equal 'Apple', ns_("Toto|Apple","Toto|Apples",1)
+    assert_equal 'Apples', ns_("Fruits|Apple","Apples",5)
+    assert_equal 'Apple', ns_("Fruits|Apple","Apples",1)
     GettextColumnMapping.locale = 'fr'
     assert_equal 'Utilisateur', Utilisateur.human_name
-    assert_equal 'Pommes', ns_("Fruits|Apple","Fruits|Apples",5)
-    assert_equal 'Pomme', ns_("Fruits|Apple","Fruits|Apples",1)
+    assert_equal 'Pommes', ns_("Fruits|Apple","Apples",5)
+    assert_equal 'Pomme', ns_("Fruits|Apple","Apples",1)
   end
 
 end

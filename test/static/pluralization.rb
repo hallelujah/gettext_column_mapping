@@ -1,2 +1,2 @@
 # coding: utf-8
-ns_("Fruits|Apple","Fruits|Apples",1)
+ns_("Fruits|Apple","Apples",1)

@@ -36,7 +36,7 @@ namespace :test_lib do
       if GetText.respond_to? :update_pofiles_org
         GetText.update_pofiles_org(
           text_domain(),
-          Dir.glob("test/{locale,models}/**/*.{rb,erb,rjs,rxml}"),
+          Dir.glob("test/{locale,models,static}/**/*.{rb,erb,rjs,rxml}"),
           "version 0.0.1",
           :po_root => 'test/locale',
           :msgmerge=>['--sort-output']
@@ -55,7 +55,7 @@ namespace :test_lib do
         #parse files.. (models are simply parsed as ruby files)
         GetText.update_pofiles(
           text_domain,
-          Dir.glob("test/{locale,models}/**/*.{rb,erb,haml}"),
+          Dir.glob("test/{locale,models,static}/**/*.{rb,erb,haml}"),
           "version 0.0.1",
           'test/locale'
         )

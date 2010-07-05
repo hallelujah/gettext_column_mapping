@@ -1,6 +1,11 @@
 # coding: utf-8
 require 'gettext_activerecord'
 module GettextColumnMapping
+
+  class << self
+    delegate :locale, :locale=, :to => GetText
+  end
+
   module Backends
     module GettextActiverecord
 

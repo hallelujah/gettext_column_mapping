@@ -5,6 +5,11 @@ end
 require 'gettext_i18n_rails'
 
 module GettextColumnMapping
+
+  class << self
+    delegate :locale, :locale=, :to => FastGettext
+  end
+
   module Backends
     module GettextI18nRails
 

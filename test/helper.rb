@@ -9,7 +9,6 @@ end
 require 'rubygems'
 require 'gettext_column_mapping'
 require 'gettext_column_mapping/initializer'
-require 'test/unit'
 require 'fileutils'
 configuration = {
   'database' => 'gettext_column_mapping',

@@ -1,4 +1,4 @@
-require 'helper'
+require 'test_helper'
 require 'models/utilisateur'
 class UtilisateurTest < Test::Unit::TestCase
   def test_to_s_with_gettext

@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'helper'
 GettextColumnMapping::Initializer.run do |config|
   config.backend = :gettext_activerecord

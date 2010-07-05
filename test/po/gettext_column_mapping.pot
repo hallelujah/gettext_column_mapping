@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2010-07-05 12:02+0200\n"
+"POT-Creation-Date: 2010-07-05 16:53+0200\n"
 "PO-Revision-Date: 2010-07-05 11:48+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: test/static/pluralization.rb:1
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/pluralization.rb:2
 msgid "Fruits|Apple"
-msgid_plural "Fruits|Apples"
+msgid_plural "Apples"
 msgstr[0] ""
 msgstr[1] ""
 
-#: test/locale/data.rb:2
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:3
 msgid "Model|User"
 msgstr ""
 
-#: test/locale/data.rb:3
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:4
 msgid "Model|User|First name"
 msgstr ""
 
-#: test/locale/data.rb:5
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:6
 msgid "Model|User|Gender"
 msgstr ""
 
-#: test/locale/data.rb:4
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:5
 msgid "Model|User|Last name"
 msgstr ""

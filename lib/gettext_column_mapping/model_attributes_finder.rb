@@ -22,6 +22,7 @@ module GettextColumnMapping
   class ModelAttributesFinder
 
     def initialize
+      return unless Object.const_defined?(:Rails)
       # HOOK ... HOOK wow ... berk
       # Is it safe ?
       $rails_rake_task = false
@@ -44,7 +45,7 @@ module GettextColumnMapping
     def find(options)
       found = Hash.new([])
 
-      ActiveRecord::Base.gettext_column_mapping_subclasses.each do |subclass|
+      GettextColumnMapping.activerecord_subclasses.each do |subclass|
         next if  table_ignored?(subclass,options[:ignore_tables])
         subclass.columns.each do |column|
           unless column_ignored?(subclass,column,options[:ignore_columns])

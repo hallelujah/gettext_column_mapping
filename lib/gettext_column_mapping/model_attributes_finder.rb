@@ -5,6 +5,7 @@ module GettextColumnMapping
   def self.store_model_attributes(options)
     file = options[:to] || 'data/model_attributes.rb'
     File.open(file,'w') do |f|
+      f.puts "# coding: utf-8"
       f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
       ModelAttributesFinder.new.find(options).each do |model,column_names|
         

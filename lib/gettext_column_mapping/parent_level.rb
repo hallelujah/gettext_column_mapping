@@ -51,11 +51,11 @@ module GettextColumnMapping
       end
 
       def parent_attributes_translation(klass)
-        translation_attributes(klass) && translation_attributes(klass)[:parent]
+        attributes_translation(klass) && attributes_translation(klass)[:parent]
       end
 
       def column_attributes_translation(klass)
-        @column_attributes_translation[klass.name] ||= (attributes_translation(klass) && attributes_translation(klass)[:columns]) || {}
+        @column_attributes_translation[klass.name] ||= (attributes_translation(klass) && attributes_translation(klass)[:columns]) || []
       end
 
     end

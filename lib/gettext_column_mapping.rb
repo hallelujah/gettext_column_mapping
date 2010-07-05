@@ -29,4 +29,9 @@ module GettextColumnMapping
   self.config.backend_class = nil
   self.config.model_prefix = "Model"
   self.config.data_prefix = "Data"
+  
+  # Additional plugins
+  self.config.use_parent_level = false
+  self.config.parent_level_file = defined?(Rails) ? File.join(Rails.root,'config','parent_level_column_mapping.yml') : nil
+  self.config.parent_level_parser = :yaml
 end

@@ -37,7 +37,7 @@ module GettextColumnMapping
         when String
           require config.backend
           # config.backend_ext must be set !!
-          raise  BackendNotLoadedError, "GettextColumnmapping.config.backend_class must be set if you use your own backend" unless config.bakend_class
+          raise  BackendNotLoadedError, "GettextColumnMapping.config.backend_class must be set if you use your own backend" unless config.bakend_class
         else
           raise BackendNotLoadedError, "You must supply a valid backend :gettext_i18n_rails | :gettext_active_record | 'my_librairie/my_backend', please refer to documentation."
         end
@@ -47,6 +47,10 @@ module GettextColumnMapping
       def extend_active_record
         ActiveRecord::Base.send(:include,GettextColumnMapping::Backends::Base)
         ActiveRecord::Base.send(:include, config.backend_class.constantize)
+        if config.use_parent_level
+          require 'gettext_column_mapping/parent_level'
+          GettextColumnMapping::ParentLevel.load_config
+        end
       end
 
       def load_config_file

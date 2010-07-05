@@ -17,14 +17,6 @@ module GettextColumnMapping
         base.class_eval do 
           class << self
 
-            def human_name_without_translation
-              to_s_with_gettext
-            end
-
-            def human_name
-              s_(human_name_without_translation)
-            end
-
             def human_attribute_name_without_translation(attr)
               human_attribute_name(attr)
             end

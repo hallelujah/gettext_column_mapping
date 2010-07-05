@@ -1,5 +1,6 @@
 # coding: utf-8
 require 'gettext_activerecord'
+Object.send :include, GetText
 module GettextColumnMapping
 
   class << self

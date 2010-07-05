@@ -61,6 +61,15 @@ module GettextColumnMapping
             end
             alias_method_chain :to_s_with_gettext, :translation
 
+            def human_name_without_translation
+              to_s_with_gettext
+            end
+
+            def human_name
+              s_(human_name_without_translation)
+            end
+
+
           end # singleton proxy
         end # class_eval
       end # included definition

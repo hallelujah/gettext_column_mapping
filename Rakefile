@@ -50,3 +50,7 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+# Load my tasks
+$:.unshift(File.expand_path('../lib',__FILE__))
+require 'gettext_column_mapping/tasks.rb'

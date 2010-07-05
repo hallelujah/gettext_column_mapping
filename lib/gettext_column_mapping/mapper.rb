@@ -4,6 +4,11 @@ module GettextColumnMapping
     attr_accessor :mappings
     delegate :[], :has_key?, :to => :mappings, :allow_nil => true
 
+
+    def class_mapping(obj)
+      self[obj.name.underscore][:class_name] || obj.name.underscore
+    end
+
     def translate_class_name?(obj)
       ! self[obj.name.underscore][:class_name].blank?
     end
@@ -21,7 +26,7 @@ module GettextColumnMapping
     end
 
     def column_translation_for_attribute(obj,key)
-      if has_translation_key?(obj,key)
+      if translate_key?(obj,key)
         "#{obj.to_s_with_gettext}|#{map_attribute(obj,key)}"
       else
         "#{obj.to_s_with_gettext}|#{key.to_s.humanize}"

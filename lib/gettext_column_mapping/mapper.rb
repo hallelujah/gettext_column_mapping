@@ -19,7 +19,7 @@ module GettextColumnMapping
     end
 
     def map_attribute(obj,key)
-      self[obj.name.underscore][:column_names][key]
+      self[obj.name.underscore][:column_names][key] rescue key.to_s.capitalize
     end
 
     def translate_key?(obj,key)

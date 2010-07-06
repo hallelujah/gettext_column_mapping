@@ -33,8 +33,8 @@ module GettextColumnMapping
       def prefix(klass = nil,column = nil,parent = nil,key = nil)
         prefixes = [data_prefix]
         prefixes << "#{klass.to_s_with_gettext}" if klass
-        prefixes  << "#{parent[key]}" if parent
-        prefixes << "#{klass.column_map_attribute(column.to_s)}" if column
+        prefixes << parent[key] if parent
+        prefixes << klass.column_map_attribute(column.to_s) if column
         prefixes.join("|")
       end
 
@@ -58,11 +58,15 @@ module GettextColumnMapping
         if parent
           parent_key = parent[:key]
           parent_association = parent[:association]
-          conditions = parent[:conditions]
         end
+        conditions = conditions_translation(klass_name)
         results = [klass_name,columns,parent_association,parent_key,conditions]
         yield(*results) if block_given?
         results
+      end
+
+      def conditions_translation(klass_name)
+        attributes_translation(klass_name) && attributes_translation(klass_name)[:conditions]
       end
 
       def attributes_translation(klass_name)

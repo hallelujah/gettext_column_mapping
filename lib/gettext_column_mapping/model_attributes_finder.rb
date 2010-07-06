@@ -17,12 +17,12 @@ module GettextColumnMapping
       f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
       ModelAttributesFinder.new.find(options).each do |model,column_names|
 
-        f.puts("s_('#{model.to_s_with_gettext}')") #!Keep in sync with ActiveRecord::Base.human_name
+        f.puts("s_(\"#{model.to_s_with_gettext}\")") #!Keep in sync with ActiveRecord::Base.human_name
 
         #all columns namespaced under the model
         column_names.each do |attribute|
           translation = model.gettext_translation_for_attribute_name(attribute)
-          f.puts("s_('#{translation}')")
+          f.puts("s_(\"#{translation}\")")
         end
       end
       if GettextColumnMapping.config.use_parent_level
@@ -30,12 +30,15 @@ module GettextColumnMapping
         GettextColumnMapping::ParentLevel.each_config do |klass_name,columns,parent_association,parent_key,conditions|
           model = klass_name.constantize
           options_hash = {}
-          if parent_association
-           options_hash.merge!(:conditions => conditions, :include => parent_association)
+          if conditions
+            options_hash.merge!(:conditions => conditions)
           end
-          model.find_each do |record|
+          if parent_association
+            options_hash.merge!( :include => parent_association)
+          end
+          model.find_each(options_hash) do |record|
             columns.each do |column|
-              f.puts("s_('#{record.msgid_for_attribute(column)}')")
+              f.puts("s_(\"#{record.msgid_for_attribute(column)}\")")
             end
           end
         end
@@ -55,7 +58,7 @@ module GettextColumnMapping
         #all columns namespaced under the model
         column_names.each do |attribute|
           translation = model.gettext_translation_for_attribute_name(attribute)
-          f.puts("s_('#{translation}')")
+          f.puts("s_(\"#{translation}\")")
         end
 
         if GettextColumnMapping.config.use_parent_level
@@ -63,18 +66,21 @@ module GettextColumnMapping
           GettextColumnMapping::ParentLevel.item_config(model.name) do |klass_name,columns,parent_association,parent_key,conditions|
             model = klass_name.constantize
             options_hash = {}
-            if parent_association
-              options_hash.merge!(:conditions => conditions, :include => parent_association)
+            if conditions
+              options_hash.merge!(:conditions => conditions)
             end
-            model.find_each do |record|
-              columns.each do |column|
-                f.puts("s_('#{record.msgid_for_attribute(column)}')")
+            if parent_association
+              options_hash.merge!( :include => parent_association)
+            end
+            model.find_each(options_hash) do |record|
+              columns.each do |key|
+                f.puts("s_(\"#{record.msgid_for_attribute(key)}\")")
               end
             end
           end
-      end
+        end
 
-      f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
+        f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
 
       end
     end

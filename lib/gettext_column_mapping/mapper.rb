@@ -11,7 +11,11 @@ module GettextColumnMapping
     end
 
     def translate_class_name?(obj)
-      ! self[obj.name.underscore][:class_name].blank?
+      begin
+        ! self[obj.name.underscore][:class_name].blank?
+      rescue 
+        false
+      end
     end
 
     def map_attribute(obj,key)

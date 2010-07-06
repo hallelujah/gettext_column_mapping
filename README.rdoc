@@ -21,6 +21,7 @@ If you use mutoh/gettext or grosser/fast_gettext to localize your active_record 
 This library is extracted from another application with its requirements.  So it may not fit your project
 It must be refactored and improved.
 
+* Add examples and usage in README
 * Must have a better API methods naming
 * Must write a documentation.
 * Improve tests

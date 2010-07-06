@@ -79,9 +79,24 @@ Rails is not mandatory, you can use it in your other project taht satisfies all 
 
 Just use  the GettextColumnMapping::Initializer.run method
 
+
+== Rake task
+
+You can add in your Rakefile to have gettext_column_mapping:.* tasks 
+
+    GettextColumnMapping::Tasks.new("version","text_domain") do |t|
+      t.options_store = {
+        :po_root => "./po",
+        :msgmerge => [:verbose, :no_fuzzy_matching]
+      }
+      t.locale_path = './locale'
+      t.options_finder = {:to => "./static/data.rb", :ignore_tables => "schema_migrations"}
+    end
+
+
 == Maintainer
 Ramihajamalala Hery <hery at rails-royce.org>
 
 == Copyright
 
-Copyright (c) 2010 [Ramihajamalala Hery <hery at rails-royce.org], released under the MIT license
+Copyright (c) 2010 Ramihajamalala Hery < hery at rails-royce.org >, released under the MIT license

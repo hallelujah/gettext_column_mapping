@@ -3,7 +3,9 @@ require 'test_helper'
 require 'models/utilisateur'
 require 'models/rubrique'
 require 'models/categorie'
-class ActiverecordTest < Test::Unit::TestCase
+class ActiverecordTest < ActiveSupport::TestCase
+
+  fixtures :categories,:rubriques
 
   def test_human_attribute_name
     GettextColumnMapping.locale = 'en'
@@ -22,7 +24,20 @@ class ActiverecordTest < Test::Unit::TestCase
 
 
   def test_parent_level
-   assert_equal 'Data|Model|Category|Event|Label|World Cup', Categorie.find(4).msgid_for_attribute('libelle')
+    cat = categories(:"event-wc")
+    assert_equal 'Data|Model|Category|Event|Label|World Cup', cat.msgid_for_attribute('libelle')
+    GettextColumnMapping.locale = 'en'
+    assert_equal 'World Cup', cat.libelle
+    GettextColumnMapping.locale = 'fr'
+    assert_equal 'Evènement - Coupe du monde', cat.libelle
+    # Sport Football
+    cat = categories(:"sport-foot")
+    assert_equal 'Data|Model|Category|Sport|Label|Football', cat.msgid_for_attribute('libelle')
+    GettextColumnMapping.locale = 'en'
+    assert_equal 'Football', cat.libelle
+    GettextColumnMapping.locale = 'fr'
+    assert_equal 'Sport - Football', cat.libelle
+
   end
 
 end

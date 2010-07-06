@@ -3,4 +3,4 @@ categorie:
     association: rubrique
     key:  libelle
   columns:
-    libelle
+   - libelle

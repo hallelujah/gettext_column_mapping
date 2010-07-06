@@ -8,7 +8,7 @@ module GettextColumnMapping
       f.puts "# coding: utf-8"
       f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
       ModelAttributesFinder.new.find(options).each do |model,column_names|
-        
+
         f.puts("s_('#{model.to_s_with_gettext}')") #!Keep in sync with ActiveRecord::Base.human_name
 
         #all columns namespaced under the model
@@ -17,6 +17,19 @@ module GettextColumnMapping
           f.puts("s_('#{translation}')")
         end
       end
+      if GettextColumnMapping.config.use_parent_level
+        # Select all classes with parent level
+        GettextColumnMapping::ParentLevel.each_config do |klass_name,parent_klass_name,parent_key,columns|
+          model = klass_name.constantize
+          if parent_klass_name && parent_key && parent = parent_klass_name.constantize
+          end
+
+
+        end
+        # For each selected class, batch 200 include parents with key
+        # f.puts(instance.msgid_for_attribute(column))
+      end
+
       f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
     end
   end

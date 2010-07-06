@@ -46,16 +46,28 @@ module GettextColumnMapping
         column_attributes_translation(klass)[column]
       end
 
-      def attributes_translation(klass)
-        @attributes_translation[klass.name] = @parent_level_config[klass.name.underscore]
+      def each_config(&block)
+        @column_attributes_translation.each do |klass_name,columns| 
+          parent = parent_attributes_translation(klass_name)
+          if parent
+            parent_key = parent[:key]
+            parent_association = parent[:association]
+          end
+          yield(klass_name,parent_klass_name, parent_key,columns)
+        end
+
       end
 
-      def parent_attributes_translation(klass)
-        attributes_translation(klass) && attributes_translation(klass)[:parent]
+      def attributes_translation(klass_name)
+        @attributes_translation[klass_name] = @parent_level_config[klass_name.underscore]
+      end
+
+      def parent_attributes_translation(klass_name)
+        attributes_translation(klass_name) && attributes_translation(klass_name)[:parent]
       end
 
       def column_attributes_translation(klass)
-        @column_attributes_translation[klass.name] ||= (attributes_translation(klass) && attributes_translation(klass)[:columns]) || []
+        @column_attributes_translation[klass.name] ||= (attributes_translation(klass.name) && attributes_translation(klass.name)[:columns]) || []
       end
 
     end

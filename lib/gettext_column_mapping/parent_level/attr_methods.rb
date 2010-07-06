@@ -8,7 +8,7 @@ module GettextColumnMapping
             def inherited_with_column_mapping_parent_level(subclass)
               self.inherited_without_column_mapping_parent_level(subclass)
 
-              parent = GettextColumnMapping::ParentLevel.parent_attributes_translation(subclass)
+              parent = GettextColumnMapping::ParentLevel.parent_attributes_translation(subclass.to_s)
               attributes = GettextColumnMapping::ParentLevel.column_attributes_translation(subclass)
               subclass.gettext_column_mapping_accessor(attributes,parent)
             end
@@ -19,13 +19,13 @@ module GettextColumnMapping
 
       def gettext_column_mapping_accessor(method_syms=[],parent=nil)
         if parent
-          parent_klass = parent[:klass]
+          parent_association = parent[:association]
           parent_key = parent[:key]
         end
 
         class_eval(<<-CODE,__FILE__,__LINE__)
           def msgid_for_attribute(method)
-            parent_record = #{parent_klass ? parent_klass : 'nil'}
+            parent_record = #{parent_association ? parent_association : 'nil'}
             GettextColumnMapping::ParentLevel.prefix_method(self,method,parent_record,'#{parent_key}')
           end
         CODE

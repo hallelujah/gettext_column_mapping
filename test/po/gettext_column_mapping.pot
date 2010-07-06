@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2010-07-05 19:37+0200\n"
+"POT-Creation-Date: 2010-07-06 10:30+0200\n"
 "PO-Revision-Date: 2010-07-05 11:48+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:13
+msgid "Data|Model|Category|Event|Label|Football"
+msgstr ""
+
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:14
+msgid "Data|Model|Category|Event|Label|World Cup"
+msgstr ""
+
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:11
+msgid "Data|Model|Category|Sport|Label|Football"
+msgstr ""
+
+#: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/data.rb:12
+msgid "Data|Model|Category|Sport|Label|World Cup"
+msgstr ""
 
 #: /home/ruby/Devel/Ruby/gettext_column_mapping/test/static/pluralization.rb:2
 msgid "Fruits|Apple"

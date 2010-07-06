@@ -1,19 +1,19 @@
-1:
+"sport-foot":
   libelle: Football
   rubrique_id: 1
   id: 1
 
-2:
+"sport-wc":
   libelle: World Cup
   rubrique_id: 1
   id: 2
 
-3:
+"event-foot":
   libelle: Football
   rubrique_id: 2
   id: 3
 
-4:
+"event-wc":
   libelle: World Cup
   rubrique_id: 2
   id: 4

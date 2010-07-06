@@ -16,13 +16,14 @@ ActiveRecord::Base.configurations = YAML.load_file(File.expand_path('../config/d
 ActiveRecord::Base.establish_connection(:test)
 logfile = File.open(File.expand_path('../log/database.log',__FILE__), 'a')    
 logfile.sync = true
+require 'active_record/fixtures'
 ActiveRecord::Base.logger = Logger.new(logfile)
 migrator = ActiveRecord::Migrator.new(:up,File.expand_path('../db/migrate',__FILE__),nil)
+
 if ! migrator.pending_migrations.blank? || ENV['REMIGRATE']
   ActiveRecord::Base.connection.execute("DROP DATABASE gettext_column_mapping")
   ActiveRecord::Base.connection.execute("CREATE DATABASE gettext_column_mapping")
   ActiveRecord::Base.establish_connection(:test)
-  require 'active_record/fixtures'
 
   class ActiveRecord::Migration
     def self.load_data(filename, dir = File.expand_path('../db/fixtures',__FILE__))

@@ -1,7 +1,7 @@
-1:
+sport:
   libelle: Sport
   id: 1
 
-2:
+event:
   libelle: Event
   id: 2

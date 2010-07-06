@@ -1,6 +1,7 @@
 = gettext_column_mapping
 
 If you use mutoh/gettext or grosser/fast_gettext to localize your active_record models, this library is for you.
+This gem only works for now with mysql
 
 
 == Note on Patches/Pull Requests
@@ -14,23 +15,69 @@ If you use mutoh/gettext or grosser/fast_gettext to localize your active_record 
 * Send me a pull request. Bonus points for topic branches.
 
 == Requirements
-* mutoh/gettext_activerecord >= 2.1.0 or grosser/fast_gettext 
-* rails >= 2.2
+Gem requirements :
+* mutoh/gettext_activerecord >= 2.1.0 or grosser/fast_gettext or your own gettext implementation
+* activerecord >= 2.3.0
+* mysql >= 2.7
 
 == Features/Problems
+
 This library is extracted from another application with its requirements.  So it may not fit your project
 It must be refactored and improved.
 
-* Add examples and usage in README
-* Must have a better API methods naming
-* Must write a documentation.
-* Improve tests
+* Better API methods naming ?
+* Add more atomic tests
 * Must accept different output than UTF-8
 
 == Example
 
-Example goes here.
+    gem install gettext_column_mapping
+    gem install fast_gettext gettext_i18n_rails
 
+
+Rails 2.3.x Usage
+
+    # config/environment.rb
+
+    config.gem 'gettext_column_mapping'
+
+    # config/initializers/gettext.rb
+
+    GettextColumnMapping::Initializer.run do |config|
+      config.config_file = File.expand_path('../../column_mapping.yml', __FILE__)
+    end
+
+Rails 3 Usage
+
+    # Gemfile
+    gem 'gettext_column_mapping', :source => 'git://github.com/hallelujah/gettext_column_mapping.git', :require => 'gettext_column_mapping/railtie'
+
+    # config/application.rb
+
+    config.gettext_column_mapping.config_file = File.expand_path('../column_mapping.yml',__FILE__)
+
+All Rails
+
+    # config/initializers/gettext.rb
+
+    # Configure FastGettext
+    FastGettext.add_text_domain 'app_domain', :path => File.join(RAILS_ROOT,'locale')
+    FastGettext.default_available_locales = ['en','fr','es'] #all you want to allow
+    FastGettext.default_text_domain = 'app_domain'
+
+    # config/column_mapping.yml
+
+    my_namespace/foo:
+      class_name: OtherFoo
+      column_names:
+        my_label: Label
+      
+
+See a working " gettext_column_mapping rails examples"[http://github.com/hallelujah/gettext_column_mapping_rails_example.git]
+
+Rails is not mandatory, you can use it in your other project taht satisfies all requirements above !!
+
+Just use  the GettextColumnMapping::Initializer.run method
 
 == Maintainer
 Ramihajamalala Hery <hery at rails-royce.org>

@@ -1,8 +1,6 @@
 # coding: utf-8
 require 'test_helper'
-require 'models/utilisateur'
-require 'models/rubrique'
-require 'models/categorie'
+
 class ActiverecordTest < ActiveSupport::TestCase
 
   fixtures :categories,:rubriques

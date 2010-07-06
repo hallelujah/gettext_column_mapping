@@ -4,8 +4,13 @@ if ENV['GETTEXT']
 else
   require 'fast_gettext_helper'
 end
-require 'test/unit'
+
+require 'models/utilisateur'
+require 'models/categorie'
+require 'models/rubrique'
+
 require 'active_support/test_case'
+require 'test/unit'
 class ActiveSupport::TestCase
   include ActiveRecord::TestFixtures
   self.fixture_path = File.expand_path("../db/fixtures",__FILE__)

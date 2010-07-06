@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'test_helper'
-require 'models/utilisateur'
-class UtilisateurTest < Test::Unit::TestCase
+class UtilisateurTest < ActiveSupport::TestCase
+  fixtures :categories, :rubriques
 
   class NotMapped < ActiveRecord::Base; end
 
@@ -25,6 +25,11 @@ class UtilisateurTest < Test::Unit::TestCase
   def test_translate_class_name
     assert ! GettextColumnMapping.mapper.translate_class_name?(NotMapped)
     assert GettextColumnMapping.mapper.translate_class_name?(Utilisateur)
+  end
+
+  def test_map_attribute
+    assert 'Label', GettextColumnMapping.mapper.map_attribute(NotMapped,'label')
+    assert 'Label', GettextColumnMapping.mapper.map_attribute(Categorie,'label')
   end
 
   def test_translation

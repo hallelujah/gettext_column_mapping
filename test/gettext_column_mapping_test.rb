@@ -1,6 +1,6 @@
 # coding: utf-8
 require 'test_helper'
-class GettextColumnMappingTest < Test::Unit::TestCase
+class GettextColumnMappingTest < ActiveSupport::TestCase
 
   def test_config
     assert_instance_of ActiveSupport::OrderedOptions, GettextColumnMapping.config

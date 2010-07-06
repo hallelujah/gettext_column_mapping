@@ -52,8 +52,9 @@ module GettextColumnMapping
           if parent
             parent_key = parent[:key]
             parent_association = parent[:association]
+            conditions = parent[:conditions]
           end
-          yield(klass_name,parent_klass_name, parent_key,columns)
+          yield(klass_name,columns,parent_association, parent_key,conditions)
         end
 
       end

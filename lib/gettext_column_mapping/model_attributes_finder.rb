@@ -19,12 +19,17 @@ module GettextColumnMapping
       end
       if GettextColumnMapping.config.use_parent_level
         # Select all classes with parent level
-        GettextColumnMapping::ParentLevel.each_config do |klass_name,parent_klass_name,parent_key,columns|
+        GettextColumnMapping::ParentLevel.each_config do |klass_name,columns,parent_association,parent_key,conditions|
           model = klass_name.constantize
-          if parent_klass_name && parent_key && parent = parent_klass_name.constantize
+          options_hash = {}
+          if parent_association
+           options_hash.merge!(:conditions => conditions, :include => parent_association)
           end
-
-
+          model.find_each do |record|
+            columns.each do |column|
+              f.puts("s_('#{record.msgid_for_attribute(column)}')")
+            end
+          end
         end
         # For each selected class, batch 200 include parents with key
         # f.puts(instance.msgid_for_attribute(column))

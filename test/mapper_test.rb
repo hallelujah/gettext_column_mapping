@@ -2,6 +2,9 @@
 require 'test_helper'
 require 'models/utilisateur'
 class UtilisateurTest < Test::Unit::TestCase
+
+  class NotMapped < ActiveRecord::Base; end
+
   def test_to_s_with_gettext
     assert_equal 'Model|User', Utilisateur.to_s_with_gettext
   end
@@ -17,6 +20,11 @@ class UtilisateurTest < Test::Unit::TestCase
     assert_equal 'Model|User|First name', GettextColumnMapping.mapper.column_translation_for_attribute(Utilisateur,'prenom')
     assert_equal 'Model|User|Last name', GettextColumnMapping.mapper.column_translation_for_attribute(Utilisateur,'nom')
     assert_equal 'Model|User|Age', GettextColumnMapping.mapper.column_translation_for_attribute(Utilisateur,'age')
+  end
+
+  def test_translate_class_name
+    assert ! GettextColumnMapping.mapper.translate_class_name?(NotMapped)
+    assert GettextColumnMapping.mapper.translate_class_name?(Utilisateur)
   end
 
   def test_translation

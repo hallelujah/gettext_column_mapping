@@ -4,17 +4,27 @@ module GettextColumnMapping
 
     attr_accessor  :text_domain, :lib_paths, :test_paths, :require_test_libs, :require_libs, :require_files, :options_store, :po_pattern, :mo_args, :locale_path, :options_finder
     attr_reader :version
-    def initialize(version, &block)
+
+    def initialize(version, domain = nil, &block)
       @test_paths = []
       @require_libs = []
       @require_test_libs = []
       @require_files = []
       @options_store = {}
-      @po_pattern = ''
+      @po_pattern = nil
+      @options_finder = {}
       @locale_path = 'locale'
       @version = version
-      yield self
+      @text_domain = domain
+      yield self if block_given?
+      verify_variables
       define
+    end
+
+    def verify_variables
+     @options_finder = {:to => File.join(locale_path, 'data.rb')}.merge(@options_finder)
+     @options_store = {:po_root => locale_path}.merge(@options_store)
+     @po_pattern ||= "locale/data.rb"
     end
 
     def text_domain
@@ -37,13 +47,14 @@ module GettextColumnMapping
         require lib
       end
 
+      task :environment 
       namespace :gettext_column_mapping do
         desc "Redo gettext"
         task :all => [:"gettext_column_mapping:find", :"gettext_column_mapping:updatepo", :"gettext_column_mapping:makemo" ]do
         end
 
         desc "Find translation in databases"
-        task :find do
+        task :find  => [:environment] do
           test_paths.each do |path|
             $:.unshift(path)
           end
@@ -54,6 +65,7 @@ module GettextColumnMapping
             require file_path
           end
 
+          require 'gettext_column_mapping/model_attributes_finder'
           GettextColumnMapping.store_model_attributes(options_finder) 
 
         end
@@ -99,7 +111,7 @@ module GettextColumnMapping
         desc "Create mo-files for L10n"
         task :makemo do
           load_gettext
-          GetText.create_mofiles(*mo_args)
+          GetText.create_mofiles(options_store[:verbose], po_root, locale_path)
         end
 
         desc "add a new language"

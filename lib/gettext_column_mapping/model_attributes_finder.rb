@@ -107,7 +107,8 @@ module GettextColumnMapping
       found = Hash.new([])
 
       GettextColumnMapping.activerecord_subclasses.each do |subclass|
-        next if  table_ignored?(subclass,options[:ignore_tables])
+        next if table_ignored?(subclass,options[:ignore_tables])
+        found[subclass] = [] if GettextColumnMapping.config.use_parent_level && ! GettextColumnMapping::ParentLevel.column_attributes_translation(subclass.name).blank?
         subclass.columns.each do |column|
           unless column_ignored?(subclass,column,options[:ignore_columns])
             found[subclass] += [column.name]

@@ -73,7 +73,7 @@ All Rails
         my_label: Label
       
 
-See a working " gettext_column_mapping rails examples"[http://github.com/hallelujah/gettext_column_mapping_rails_example.git]
+See a working {gettext_column_mapping rails examples}[http://github.com/hallelujah/gettext_column_mapping_rails_example.git]
 
 Rails is not mandatory, you can use it in your other project taht satisfies all requirements above !!
 

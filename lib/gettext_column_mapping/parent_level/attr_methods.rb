@@ -9,7 +9,7 @@ module GettextColumnMapping
               self.inherited_without_column_mapping_parent_level(subclass)
 
               parent = GettextColumnMapping::ParentLevel.parent_attributes_translation(subclass.to_s)
-              attributes = GettextColumnMapping::ParentLevel.column_attributes_translation(subclass)
+              attributes = GettextColumnMapping::ParentLevel.column_attributes_translation(subclass.to_s)
               subclass.gettext_column_mapping_accessor(attributes,parent)
             end
             alias_method_chain :inherited, :column_mapping_parent_level

@@ -4,6 +4,14 @@ module GettextColumnMapping
   #write all found models/columns to a file where GetTexts ruby parser can find them
   def self.store_model_attributes(options)
     file = options[:to] || 'data/model_attributes.rb'
+    unless options[:separate_files]
+      write_to_unique_file(file,options)
+    else
+      write_to_separate_files(file,options)
+    end
+  end
+
+  def self.write_to_unique_file(file,options)
     File.open(file,'w') do |f|
       f.puts "# coding: utf-8"
       f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
@@ -31,11 +39,44 @@ module GettextColumnMapping
             end
           end
         end
-        # For each selected class, batch 200 include parents with key
-        # f.puts(instance.msgid_for_attribute(column))
       end
 
       f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
+    end
+  end
+
+  def self.write_to_separate_files(dir,options)
+    ModelAttributesFinder.new.find(options).each do |model,column_names|
+      file = File.join(dir,model.name.underscore) + ".rb"
+      FileUtils.mkdir_p(File.dirname(file))
+      File.open(file,'w') do |f|
+        f.puts "# coding: utf-8"
+        f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
+        #all columns namespaced under the model
+        column_names.each do |attribute|
+          translation = model.gettext_translation_for_attribute_name(attribute)
+          f.puts("s_('#{translation}')")
+        end
+
+        if GettextColumnMapping.config.use_parent_level
+          # Select all classes with parent level
+          GettextColumnMapping::ParentLevel.item_config(model.name) do |klass_name,columns,parent_association,parent_key,conditions|
+            model = klass_name.constantize
+            options_hash = {}
+            if parent_association
+              options_hash.merge!(:conditions => conditions, :include => parent_association)
+            end
+            model.find_each do |record|
+              columns.each do |column|
+                f.puts("s_('#{record.msgid_for_attribute(column)}')")
+              end
+            end
+          end
+      end
+
+      f.puts "#DO NOT MODIFY! AUTOMATICALLY GENERATED FILE!"
+
+      end
     end
   end
 

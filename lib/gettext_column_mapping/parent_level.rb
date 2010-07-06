@@ -43,20 +43,26 @@ module GettextColumnMapping
       end
 
       def translate_key_for_column?(klass, column)
-        column_attributes_translation(klass)[column]
+        column_attributes_translation(klass.name)[column]
       end
 
       def each_config(&block)
         @column_attributes_translation.each do |klass_name,columns| 
-          parent = parent_attributes_translation(klass_name)
-          if parent
-            parent_key = parent[:key]
-            parent_association = parent[:association]
-            conditions = parent[:conditions]
-          end
-          yield(klass_name,columns,parent_association, parent_key,conditions)
+          yield(*item_config(klass_name))
         end
+      end
 
+      def item_config(klass_name)
+        columns =  column_attributes_translation(klass_name)
+        parent = parent_attributes_translation(klass_name)
+        if parent
+          parent_key = parent[:key]
+          parent_association = parent[:association]
+          conditions = parent[:conditions]
+        end
+        results = [klass_name,columns,parent_association,parent_key,conditions]
+        yield(*results) if block_given?
+        results
       end
 
       def attributes_translation(klass_name)
@@ -67,8 +73,8 @@ module GettextColumnMapping
         attributes_translation(klass_name) && attributes_translation(klass_name)[:parent]
       end
 
-      def column_attributes_translation(klass)
-        @column_attributes_translation[klass.name] ||= (attributes_translation(klass.name) && attributes_translation(klass.name)[:columns]) || []
+      def column_attributes_translation(klass_name)
+        @column_attributes_translation[klass_name] ||= (attributes_translation(klass_name) && attributes_translation(klass_name)[:columns]) || []
       end
 
     end

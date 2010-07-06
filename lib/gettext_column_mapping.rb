@@ -1,5 +1,6 @@
 # coding: utf-8
 # Check the version of active_support to requiring all libs
+require 'gettext_column_mapping/version'
 require 'active_support/version'
 if Gem::Version.new(ActiveSupport::VERSION::STRING) > Gem::Version.new("2")
   require 'active_support/all'

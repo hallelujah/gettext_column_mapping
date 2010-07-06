@@ -5,13 +5,7 @@ class CreateRubriques < ActiveRecord::Migration
       t.column :libelle, :string, :default => nil, :null => false
     end
 
-    require 'models/rubrique'
-
-    Rubrique.reset_column_information
-    Rubrique.create!([
-      {:libelle => "Sport"},
-      {:libelle => "Evènements"},
-    ])
+    load_data :rubriques
 
   end
 

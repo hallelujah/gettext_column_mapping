@@ -22,7 +22,7 @@ class ActiverecordTest < Test::Unit::TestCase
 
 
   def test_parent_level
-
+   assert_equal 'Data|Model|Category|Event|Label|World Cup', Categorie.find(4).msgid_for_attribute('libelle')
   end
 
 end

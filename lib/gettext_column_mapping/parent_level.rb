@@ -34,7 +34,7 @@ module GettextColumnMapping
         prefixes = [data_prefix]
         prefixes << "#{klass.to_s_with_gettext}" if klass
         prefixes  << "#{parent[key]}" if parent
-        prefixes << "#{klass.human_attribute_name_without_translation(column.to_s)}" if column
+        prefixes << "#{klass.column_map_attribute(column.to_s)}" if column
         prefixes.join("|")
       end
 

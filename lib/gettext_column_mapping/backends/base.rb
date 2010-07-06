@@ -49,7 +49,6 @@ module GettextColumnMapping
               GettextColumnMapping.mapper.map_attribute(self,key)
             end
 
-
             unless method_defined?(:to_s_with_gettext)
               def to_s_with_gettext
                 to_s

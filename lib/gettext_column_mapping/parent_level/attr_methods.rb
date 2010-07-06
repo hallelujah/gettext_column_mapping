@@ -22,15 +22,19 @@ module GettextColumnMapping
           parent_klass = parent[:klass]
           parent_key = parent[:key]
         end
+
+        class_eval(<<-CODE,__FILE__,__LINE__)
+          def msgid_for_attribute(method)
+            parent_record = #{parent_klass ? parent_klass : 'nil'}
+            GettextColumnMapping::ParentLevel.prefix_method(self,method,parent_record,'#{parent_key}')
+          end
+        CODE
+
         [method_syms].flatten.each do |method_sym|
           class_eval(<<-STR,__FILE__,__LINE__)
-                    def #{method_sym}_msgid
-                      parent_record = #{parent_klass ? parent_klass : 'nil' }
-                      GettextColumnMapping::ParentLevel.prefix_method(self,'#{method_sym}',parent_record,'#{parent_key}')
-                    end
 
                     def #{method_sym}
-                      s_(#{method_sym}_msgid)
+                      s_(msgid_for_attribute('#{method_sym}'))
                     end
                     STR
         end

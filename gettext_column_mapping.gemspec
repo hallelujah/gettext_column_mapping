@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gettext_column_mapping}
-  s.version = "0.2.4"
+  s.version = "0.2.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["hallelujah"]
@@ -74,22 +74,22 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Translate your database columns with gettext}
   s.test_files = [
-    "test/gettext_column_mapping_test.rb",
-     "test/fast_gettext_helper.rb",
-     "test/test_helper.rb",
-     "test/static/pluralization.rb",
+    "test/helper.rb",
      "test/static/data.rb",
-     "test/models/rubrique.rb",
-     "test/models/utilisateur.rb",
-     "test/models/categorie.rb",
-     "test/db/migrate/002_create_rubriques.rb",
-     "test/db/migrate/001_create_utilisateurs.rb",
-     "test/db/migrate/003_create_categories.rb",
-     "test/gettext_helper.rb",
-     "test/helper.rb",
+     "test/static/pluralization.rb",
      "test/activerecord_test.rb",
      "test/mapper_test.rb",
-     "test/extend_lib_path.rb"
+     "test/fast_gettext_helper.rb",
+     "test/gettext_column_mapping_test.rb",
+     "test/extend_lib_path.rb",
+     "test/gettext_helper.rb",
+     "test/db/migrate/001_create_utilisateurs.rb",
+     "test/db/migrate/003_create_categories.rb",
+     "test/db/migrate/002_create_rubriques.rb",
+     "test/models/categorie.rb",
+     "test/models/rubrique.rb",
+     "test/models/utilisateur.rb",
+     "test/test_helper.rb"
   ]
 
   if s.respond_to? :specification_version then

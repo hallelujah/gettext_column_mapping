@@ -28,7 +28,7 @@ module GettextColumnMapping
             end
 
             def to_mapping
-              Gettext.mapper.class_mapping(self)
+              GettextColumnMapping.mapper.class_mapping(self)
             rescue
               name.underscore
             end

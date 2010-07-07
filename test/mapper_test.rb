@@ -43,5 +43,11 @@ class UtilisateurTest < ActiveSupport::TestCase
     assert_equal 'Pomme', ns_("Fruits|Apple","Apples",1)
   end
 
+
+  def test_class_mapping
+    assert_equal 'Division', GettextColumnMapping.mapper.class_mapping(Rubrique)
+    assert_equal 'Division', Rubrique.to_mapping
+  end
+
 end
 

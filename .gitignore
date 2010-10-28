@@ -4,3 +4,4 @@ test/locale/
 coverage
 rdoc
 pkg
+*.gemspec

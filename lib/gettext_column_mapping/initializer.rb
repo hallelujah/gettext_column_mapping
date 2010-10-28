@@ -45,8 +45,12 @@ module GettextColumnMapping
       end
 
       def extend_active_record
-        ActiveRecord::Base.send(:include,GettextColumnMapping::Backends::Base)
-        ActiveRecord::Base.send(:include, config.backend_class.constantize)
+        unless ActiveRecord::Base.included_modules.include?(GettextColumnMapping::Backends::Base)
+          ActiveRecord::Base.send(:include,GettextColumnMapping::Backends::Base)
+        end
+        unless ActiveRecord::Base.included_modules.include?(config.backend_class.constantize)
+          ActiveRecord::Base.send(:include, config.backend_class.constantize)
+        end
         if config.use_parent_level
           require 'gettext_column_mapping/parent_level'
           GettextColumnMapping::ParentLevel.load_config

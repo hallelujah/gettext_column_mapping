@@ -43,7 +43,7 @@ module GettextColumnMapping
       end
 
       def translate_key_for_column?(klass, column)
-        column_attributes_translation(klass.name)[column]
+        column_attributes_translation(klass.name).include?(column.to_s)
       end
 
       def each_config(&block)
@@ -78,7 +78,7 @@ module GettextColumnMapping
       end
 
       def column_attributes_translation(klass_name)
-        @column_attributes_translation[klass_name] ||= (attributes_translation(klass_name) && attributes_translation(klass_name)[:columns]) || []
+        @column_attributes_translation[klass_name] ||= ((attributes_translation(klass_name) && attributes_translation(klass_name)[:columns]) || []).map(&:to_s)
       end
 
     end

@@ -28,8 +28,8 @@ class UtilisateurTest < ActiveSupport::TestCase
   end
 
   def test_map_attribute
-    assert 'Label', GettextColumnMapping.mapper.map_attribute(NotMapped,'label')
-    assert 'Label', GettextColumnMapping.mapper.map_attribute(Categorie,'label')
+    assert_equal 'Libelle', GettextColumnMapping.mapper.map_attribute(NotMapped,'libelle')
+    assert_equal 'Label', GettextColumnMapping.mapper.map_attribute(Categorie,'libelle')
   end
 
   def test_translation

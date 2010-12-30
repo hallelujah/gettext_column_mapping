@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2010-07-06 10:30+0200\n"
+"POT-Creation-Date: 2010-12-30 16:26+0100\n"
 "PO-Revision-Date: 2010-07-05 11:51+0200\n"
 "Last-Translator:  <hery@rails-royce.org>\n"
 "Language-Team: French\n"

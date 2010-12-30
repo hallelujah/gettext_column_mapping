@@ -1,7 +1,7 @@
 # coding: utf-8
 test:
   database: gettext_column_mapping
-  adapter: mysql
+  adapter: mysql2
   host: localhost
   username: root
   password:

@@ -2,7 +2,7 @@
 # Check the version of active_support to requiring all libs
 require 'gettext_column_mapping/version'
 require 'active_support/version'
-if Gem::Version.new(ActiveSupport::VERSION::STRING) > Gem::Version.new("2")
+if Gem::Version.new(ActiveSupport::VERSION::STRING) >= Gem::Version.new("3.0.0")
   require 'active_support/all'
 else
   require 'active_support'
